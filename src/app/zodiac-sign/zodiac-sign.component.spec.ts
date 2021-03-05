@@ -16,10 +16,16 @@ describe('ZodiacSignComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ZodiacSignComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create component ZodiacSignComponent', () => {
     expect(component).toBeTruthy();
+  });
+
+  it(`date 02-09-1989 should return zodiac sign 'Virgem'`, () => {
+    const birthdate = new Date(new Date().getFullYear(), 8, 2);
+    component.getZodiacSign(birthdate).then(zodiacSign => {
+      expect(zodiacSign).toMatch(/Virgem/);
+    });
   });
 });

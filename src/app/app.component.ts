@@ -7,31 +7,6 @@ import {ZodiacSignComponent} from './zodiac-sign/zodiac-sign.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  // private ariesInitialDate = new Date();
-  // private ariesEndDate = new Date();
-  // private taurusInitialDate = new Date();
-  // private taurusEndDate = new Date();
-  // private geminiInitialDate = new Date();
-  // private geminiEndDate = new Date();
-  // private cancerInitialDate = new Date();
-  // private cancerEndDate = new Date();
-  // private leoInitialDate = new Date();
-  // private leoEndDate = new Date();
-  // private virgoInitialDate = new Date();
-  // private virgoEndDate = new Date();
-  // private libraInitialDate = new Date();
-  // private libraEndDate = new Date();
-  // private scorpiusInitialDate = new Date();
-  // private scorpiusEndDate = new Date();
-  // private sagittariusInitialDate = new Date();
-  // private sagittariusEndDate = new Date();
-  // private capricornusInitialDate = new Date();
-  // private capricornusEndDate = new Date();
-  // private aquariusInitialDate = new Date();
-  // private aquariusEndDate = new Date();
-  // private piscesInitialDate = new Date();
-  // private piscesEndDate = new Date();
-
   public selectedDateString: string;
   public selectedDate = new Date();
   private currentDate = new Date();
