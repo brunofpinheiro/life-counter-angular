@@ -22,10 +22,9 @@ describe('ZodiacSignComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`date 02-09-1989 should return zodiac sign 'Virgem'`, () => {
+  it(`date 02-09-1989 should return zodiac sign 'Virgem'`, async () => {
     const birthdate = new Date(new Date().getFullYear(), 8, 2);
-    component.getZodiacSign(birthdate).then(zodiacSign => {
-      expect(zodiacSign).toMatch(/Virgem/);
-    });
+    const zodiacSign = await component.getZodiacSign(birthdate);
+    expect(zodiacSign).toMatch(/Virgem/);
   });
 });

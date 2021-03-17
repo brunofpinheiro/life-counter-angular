@@ -1,20 +1,23 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {FormsModule} from '@angular/forms';
 import {ZodiacSignComponent} from './zodiac-sign/zodiac-sign.component';
 
 describe('AppComponent', () => {
-  let component: ZodiacSignComponent;
-  let fixture: ComponentFixture<ZodiacSignComponent>;
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [AppComponent],
+      providers: [ZodiacSignComponent]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ZodiacSignComponent);
+    fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
   });
 
@@ -22,22 +25,12 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should create the app', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.componentInstance;
-  //   expect(app).toBeTruthy();
-  // });
-
-  // it(`should have as title 'lifecounter-angular'`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.componentInstance;
-  //   expect(app.title).toEqual('lifecounter-angular');
-  // });
-  //
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement;
-  //   expect(compiled.querySelector('.content span').textContent).toContain('lifecounter-angular app is running!');
-  // });
+  it('should reset all variables', () => {
+    component.return();
+    expect(component.yearsLived).toBe(0);
+    expect(component.monthsLived).toBe(0);
+    expect(component.daysLived).toBe(0);
+    expect(component.selectedDate).toBeTruthy();
+    expect(component.selectedDateString).toBe('');
+  });
 });
