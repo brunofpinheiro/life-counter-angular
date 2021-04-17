@@ -15,13 +15,14 @@ export class AppComponent {
   public daysLived = 0;
   public monthsText: string;
   public zodiacSign: string;
+  public showInvalidDateAlert = false;
 
   constructor(private zodiacSignComponent: ZodiacSignComponent) {}
 
   // tslint:disable:max-line-length
   public async calculateLifetime(): Promise<void> {
     if (this.selectedDateString !== undefined && this.selectedDateString.length !== 8) {
-      // TODO mostrar alerta "Data inválida. Tente novamente."
+      this.showInvalidDateAlert = true;
     } else {
       if (this.selectedDateString !== undefined) {
         this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate());

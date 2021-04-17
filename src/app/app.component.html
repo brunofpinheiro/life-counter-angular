@@ -25,4 +25,11 @@
     <button type="button" class="btn btn-primary w-100 mt-5" (click)="return()">Voltar</button>
   </div>
 
+  <div *ngIf="showInvalidDateAlert" class="alert alert-danger alert-dismissible fade show position-absolute w-75 fixed-bottom ml-auto mr-auto" role="alert">
+    Data inválida.<br>Tente novamente.
+    <button (click)="showInvalidDateAlert = false;" type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
 </main>
