@@ -3,7 +3,8 @@
   <div class="d-flex h-100 flex-column align-items-center justify-content-center" *ngIf="daysLived == 0">
     <img class="logo" src="../assets/logo.png" alt="logo">
     <h2>Data de nascimento</h2>
-    <input type="date" [(ngModel)]="selectedDateString">
+<!--    <input type="date" [(ngModel)]="selectedDateString">-->
+    <input type="text" mask="00/00/0000" placeholder="dd/mm/aaaa" [(ngModel)]="selectedDateString">
     <button type="button" class="btn btn-primary w-100 mt-5" (click)="calculateLifetime(); getZodiacSign();">Calcular</button>
   </div>
 

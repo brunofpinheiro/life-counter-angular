@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {ZodiacSignComponent} from './zodiac-sign/zodiac-sign.component';
 
 @Component({
@@ -16,28 +16,29 @@ export class AppComponent {
   public monthsText: string;
   public zodiacSign: string;
 
-  constructor(private zodiacSignComponent: ZodiacSignComponent,
-              private changeDetectorRef: ChangeDetectorRef) {
-
-  }
+  constructor(private zodiacSignComponent: ZodiacSignComponent) {}
 
   // tslint:disable:max-line-length
   public async calculateLifetime(): Promise<void> {
-    if (this.selectedDateString !== undefined) {
-      this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate());
-      const year = parseInt(this.selectedDateString.substr(0, this.selectedDateString.indexOf('-')), 10);
-      const month = parseInt(this.selectedDateString.substr(this.selectedDateString.indexOf('-') + 1, this.selectedDateString.indexOf('-')), 10);
-      const day = parseInt(this.selectedDateString.substr(this.selectedDateString.lastIndexOf('-') + 1, this.selectedDateString.length), 10);
+    if (this.selectedDateString !== undefined && this.selectedDateString.length !== 8) {
+      // TODO mostrar alerta "Data inválida. Tente novamente."
+    } else {
+      if (this.selectedDateString !== undefined) {
+        this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate());
+        // const year  = parseInt(this.selectedDateString.substr(0, this.selectedDateString.indexOf('-')), 10);
+        // const month = parseInt(this.selectedDateString.substr(this.selectedDateString.indexOf('-') + 1, this.selectedDateString.indexOf('-')), 10);
+        // const day   = parseInt(this.selectedDateString.substr(this.selectedDateString.lastIndexOf('-') + 1, this.selectedDateString.length), 10);
+        const day   = parseInt(this.selectedDateString.substr(0, 2), 10);
+        const month = parseInt(this.selectedDateString.substr(2, 2), 10);
+        const year  = parseInt(this.selectedDateString.substr(4, this.selectedDateString.length), 10);
 
-      this.selectedDate = new Date(year, month - 1, day);
-      console.log(`selectedDate: ${this.selectedDate}`);
+        this.selectedDate = new Date(year, month - 1, day);
+        console.log(`selectedDate: ${this.selectedDate}`);
 
-      this.yearsLived  = await this.calculateYears();
-      this.monthsLived = await this.calculateMonths();
-      this.daysLived   = await this.calculateDays();
-
-      // console.log(`data atual: ${this.currentDate}`);
-      // console.log(`birthdate: ${this.selectedDateString}`);
+        this.yearsLived  = await this.calculateYears();
+        this.monthsLived = await this.calculateMonths();
+        this.daysLived   = await this.calculateDays();
+      }
     }
   }
 
@@ -114,13 +115,16 @@ export class AppComponent {
     return days;
   }
 
+  /**
+   * Resets all variables
+   */
   public return(): void {
     this.yearsLived  = 0;
     this.monthsLived = 0;
     this.daysLived   = 0;
 
     this.selectedDate = new Date();
-    this.selectedDateString = '';
+    this.selectedDateString = undefined;
   }
 
   /**
