@@ -6,30 +6,30 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./zodiac-sign.component.scss']
 })
 export class ZodiacSignComponent implements OnInit {
-  private ariesInitialDate = new Date();
-  private ariesEndDate = new Date();
-  private taurusInitialDate = new Date();
-  private taurusEndDate = new Date();
-  private geminiInitialDate = new Date();
-  private geminiEndDate = new Date();
-  private cancerInitialDate = new Date();
-  private cancerEndDate = new Date();
-  private leoInitialDate = new Date();
-  private leoEndDate = new Date();
-  private virgoInitialDate = new Date();
-  private virgoEndDate = new Date();
-  private libraInitialDate = new Date();
-  private libraEndDate = new Date();
-  private scorpiusInitialDate = new Date();
-  private scorpiusEndDate = new Date();
-  private sagittariusInitialDate = new Date();
-  private sagittariusEndDate = new Date();
-  private capricornusInitialDate = new Date();
-  private capricornusEndDate = new Date();
-  private aquariusInitialDate = new Date();
-  private aquariusEndDate = new Date();
-  private piscesInitialDate = new Date();
-  private piscesEndDate = new Date();
+  private ariesInitialDate: Date;
+  private ariesEndDate: Date;
+  private taurusInitialDate: Date;
+  private taurusEndDate: Date;
+  private geminiInitialDate: Date;
+  private geminiEndDate: Date;
+  private cancerInitialDate: Date;
+  private cancerEndDate: Date;
+  private leoInitialDate: Date;
+  private leoEndDate: Date;
+  private virgoInitialDate: Date;
+  private virgoEndDate: Date;
+  private libraInitialDate: Date;
+  private libraEndDate: Date;
+  private scorpiusInitialDate: Date;
+  private scorpiusEndDate: Date;
+  private sagittariusInitialDate: Date;
+  private sagittariusEndDate: Date;
+  private capricornusInitialDate: Date;
+  private capricornusEndDate: Date;
+  private aquariusInitialDate: Date;
+  private aquariusEndDate: Date;
+  private piscesInitialDate: Date;
+  private piscesEndDate: Date;
 
   constructor() { }
 
@@ -37,11 +37,11 @@ export class ZodiacSignComponent implements OnInit {
   }
 
   public async getZodiacSign(selectedDate: Date): Promise<string> {
-    await this.setZodiacSignsDates();
-
     const dayAndMonthSelectedDate = new Date();
     dayAndMonthSelectedDate.setDate(selectedDate.getDate());
     dayAndMonthSelectedDate.setMonth(selectedDate.getMonth());
+
+    await this.setZodiacSignsDates();
 
     if (dayAndMonthSelectedDate >= this.ariesInitialDate && dayAndMonthSelectedDate <= this.ariesEndDate) {
       return 'Áries';
@@ -71,39 +71,63 @@ export class ZodiacSignComponent implements OnInit {
   }
 
   private async setZodiacSignsDates(): Promise<void> {
+    this.ariesInitialDate = new Date();
+    this.ariesEndDate = new Date();
     this.ariesInitialDate.setMonth(2, 21);
     this.ariesEndDate.setMonth(3, 19);
 
+    this.taurusInitialDate = new Date();
+    this.taurusEndDate = new Date();
     this.taurusInitialDate.setMonth(3, 20);
     this.taurusEndDate.setMonth(4, 20);
 
+    this.geminiInitialDate = new Date();
+    this.geminiEndDate = new Date();
     this.geminiInitialDate.setMonth(4, 21);
     this.geminiEndDate.setMonth(5, 21);
 
+    this.cancerInitialDate = new Date();
+    this.cancerEndDate = new Date();
     this.cancerInitialDate.setMonth(5, 22);
     this.cancerEndDate.setMonth(6, 22);
 
+    this.leoInitialDate = new Date();
+    this.leoEndDate = new Date();
     this.leoInitialDate.setMonth(6, 23);
     this.leoEndDate.setMonth(7, 22);
 
+    this.virgoInitialDate = new Date();
+    this.virgoEndDate = new Date();
     this.virgoInitialDate.setMonth(7, 23);
     this.virgoEndDate.setMonth(8, 22);
 
+    this.libraInitialDate = new Date();
+    this.libraEndDate = new Date();
     this.libraInitialDate.setMonth(8, 23);
     this.libraEndDate.setMonth(9, 23);
 
+    this.scorpiusInitialDate = new Date();
+    this.scorpiusEndDate = new Date();
     this.scorpiusInitialDate.setMonth(9, 24);
     this.scorpiusEndDate.setMonth(10, 21);
 
+    this.sagittariusInitialDate = new Date();
+    this.sagittariusEndDate = new Date();
     this.sagittariusInitialDate.setMonth(10, 22);
     this.sagittariusEndDate.setMonth(11, 21);
 
+    this.capricornusInitialDate = new Date();
+    this.capricornusEndDate = new Date();
     this.capricornusInitialDate.setMonth(11, 22);
     this.capricornusEndDate.setMonth(0, 19);
 
+    this.aquariusInitialDate = new Date();
+    this.aquariusEndDate = new Date();
     this.aquariusInitialDate.setMonth(0, 20);
     this.aquariusEndDate.setMonth(1, 18);
 
+    this.piscesInitialDate = new Date();
+    this.piscesEndDate = new Date();
     this.piscesInitialDate.setMonth(1, 20);
     this.piscesEndDate.setMonth(2, 20);
   }

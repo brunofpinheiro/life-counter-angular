@@ -51,7 +51,8 @@ export class AppComponent {
     } else {
 
       tempYears = this.currentDate.getFullYear() - this.selectedDate.getFullYear();
-      if (this.currentDate.getMonth() < this.selectedDate.getMonth()) {
+      if (this.currentDate.getMonth() < this.selectedDate.getMonth()
+          || (this.currentDate.getMonth() === this.selectedDate.getMonth() && this.currentDate.getDate() < this.selectedDate.getDate())) {
         tempYears--;
       }
       console.log(`tempYears`, tempYears);
@@ -67,12 +68,12 @@ export class AppComponent {
       tempMonths = (this.currentDate.getMonth() + 1) + (12 - (this.selectedDate.getMonth() + 1));
     } else if (this.currentDate.getMonth() > this.selectedDate.getMonth()) {
       tempMonths = this.currentDate.getMonth() - this.selectedDate.getMonth();
+    } else if (this.currentDate.getMonth() === this.selectedDate.getMonth() && this.currentDate.getDate() < this.selectedDate.getDate()) {
+      tempMonths = 11;
+    } else if (this.currentDate.getDate() < this.selectedDate.getDate()) {
+        tempMonths--;
     } else {
       tempMonths = 0;
-    }
-
-    if (this.currentDate.getDate() < this.selectedDate.getDate()) {
-      tempMonths--;
     }
 
     if (tempMonths === 1) {
