@@ -4,7 +4,7 @@
     <img class="logo" src="../assets/logo.png" alt="logo">
     <h2>Data de nascimento</h2>
 <!--    <input type="date" [(ngModel)]="selectedDateString">-->
-    <input type="text" mask="00/00/0000" placeholder="dd/mm/aaaa" [(ngModel)]="selectedDateString">
+    <input type="text" mask="00/00/0000" placeholder="dd/mm/aaaa" inputmode="numeric" pattern="[0-9]*" [(ngModel)]="selectedDateString">
     <button type="button" class="btn btn-primary w-100 mt-5" (click)="calculateLifetime(); getZodiacSign();">Calcular</button>
   </div>
 
