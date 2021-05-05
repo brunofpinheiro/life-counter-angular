@@ -3,14 +3,12 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ZodiacSignComponent} from './zodiac-sign/zodiac-sign.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ZodiacSignComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +16,6 @@ import {NgxMaskModule} from 'ngx-mask';
     BrowserAnimationsModule,
     NgxMaskModule.forRoot(),
   ],
-  providers: [ZodiacSignComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-@Component({
-  selector: 'app-zodiac-sign',
-  templateUrl: './zodiac-sign.component.html',
-  styleUrls: ['./zodiac-sign.component.scss']
+@Injectable({
+  providedIn: 'root'
 })
-export class ZodiacSignComponent implements OnInit {
+export class ZodiacSignService {
   private ariesInitialDate: Date;
   private ariesEndDate: Date;
   private taurusInitialDate: Date;
@@ -33,9 +31,11 @@ export class ZodiacSignComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  /**
+   * Gets the zodiac sign of the date passed as parameter.
+   * @param selectedDate 
+   * @returns 
+   */
   public async getZodiacSign(selectedDate: Date): Promise<string> {
     const dayAndMonthSelectedDate = new Date();
     dayAndMonthSelectedDate.setDate(selectedDate.getDate());
@@ -70,6 +70,9 @@ export class ZodiacSignComponent implements OnInit {
     }
   }
 
+  /**
+   * Sets all zodiac sign's initial and end dates.
+   */
   private async setZodiacSignsDates(): Promise<void> {
     this.ariesInitialDate = new Date();
     this.ariesEndDate = new Date();

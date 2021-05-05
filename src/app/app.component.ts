@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {ZodiacSignComponent} from './zodiac-sign/zodiac-sign.component';
+import { Component } from '@angular/core';
+import { ZodiacSignService } from './zodiac-sign/zodiac-sign.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ export class AppComponent {
   public zodiacSign: string;
   public showInvalidDateAlert = false;
 
-  constructor(private zodiacSignComponent: ZodiacSignComponent) {}
+  constructor(private zodiacSignService: ZodiacSignService) { }
 
   // tslint:disable:max-line-length
   public async calculateLifetime(): Promise<void> {
@@ -29,16 +29,16 @@ export class AppComponent {
         // const year  = parseInt(this.selectedDateString.substr(0, this.selectedDateString.indexOf('-')), 10);
         // const month = parseInt(this.selectedDateString.substr(this.selectedDateString.indexOf('-') + 1, this.selectedDateString.indexOf('-')), 10);
         // const day   = parseInt(this.selectedDateString.substr(this.selectedDateString.lastIndexOf('-') + 1, this.selectedDateString.length), 10);
-        const day   = parseInt(this.selectedDateString.substr(0, 2), 10);
+        const day = parseInt(this.selectedDateString.substr(0, 2), 10);
         const month = parseInt(this.selectedDateString.substr(2, 2), 10);
-        const year  = parseInt(this.selectedDateString.substr(4, this.selectedDateString.length), 10);
+        const year = parseInt(this.selectedDateString.substr(4, this.selectedDateString.length), 10);
 
         this.selectedDate = new Date(year, month - 1, day);
         console.log(`selectedDate: ${this.selectedDate}`);
 
-        this.yearsLived  = await this.calculateYears();
+        this.yearsLived = await this.calculateYears();
         this.monthsLived = await this.calculateMonths();
-        this.daysLived   = await this.calculateDays();
+        this.daysLived = await this.calculateDays();
       }
     }
   }
@@ -52,7 +52,7 @@ export class AppComponent {
 
       tempYears = this.currentDate.getFullYear() - this.selectedDate.getFullYear();
       if (this.currentDate.getMonth() < this.selectedDate.getMonth()
-          || (this.currentDate.getMonth() === this.selectedDate.getMonth() && this.currentDate.getDate() < this.selectedDate.getDate())) {
+        || (this.currentDate.getMonth() === this.selectedDate.getMonth() && this.currentDate.getDate() < this.selectedDate.getDate())) {
         tempYears--;
       }
       console.log(`tempYears`, tempYears);
@@ -71,7 +71,7 @@ export class AppComponent {
     } else if (this.currentDate.getMonth() === this.selectedDate.getMonth() && this.currentDate.getDate() < this.selectedDate.getDate()) {
       tempMonths = 11;
     } else if (this.currentDate.getDate() < this.selectedDate.getDate()) {
-        tempMonths--;
+      tempMonths--;
     } else {
       tempMonths = 0;
     }
@@ -121,9 +121,9 @@ export class AppComponent {
    * Resets all variables
    */
   public return(): void {
-    this.yearsLived  = 0;
+    this.yearsLived = 0;
     this.monthsLived = 0;
-    this.daysLived   = 0;
+    this.daysLived = 0;
 
     this.selectedDate = new Date();
     this.selectedDateString = undefined;
@@ -133,6 +133,6 @@ export class AppComponent {
    * Get the zodiac sign for the selected date.
    */
   public async getZodiacSign(): Promise<void> {
-    this.zodiacSign = await this.zodiacSignComponent.getZodiacSign(this.selectedDate);
+    this.zodiacSign = await this.zodiacSignService.getZodiacSign(this.selectedDate);
   }
 }
