@@ -36,7 +36,7 @@ export class ZodiacSignService {
    * @param selectedDate 
    * @returns 
    */
-  public async getZodiacSign(selectedDate: Date): Promise<string> {
+  public async getZodiacSign(selectedDate: Date, currentLanguage: string): Promise<string> {
     const dayAndMonthSelectedDate = new Date();
     dayAndMonthSelectedDate.setDate(selectedDate.getDate());
     dayAndMonthSelectedDate.setMonth(selectedDate.getMonth());
@@ -44,29 +44,29 @@ export class ZodiacSignService {
     await this.setZodiacSignsDates();
 
     if (dayAndMonthSelectedDate >= this.ariesInitialDate && dayAndMonthSelectedDate <= this.ariesEndDate) {
-      return 'Áries';
+      return currentLanguage === 'pt' ? 'Áries' : 'Aries';
     } else if (dayAndMonthSelectedDate >= this.taurusInitialDate && dayAndMonthSelectedDate <= this.taurusEndDate) {
-      return 'Touro';
+      return currentLanguage === 'pt' ? 'Touro' : 'Taurus';
     } else if (dayAndMonthSelectedDate >= this.geminiInitialDate && dayAndMonthSelectedDate <= this.geminiEndDate) {
-      return 'Gêmeos';
+      return currentLanguage === 'pt' ? 'Gêmeos' : 'Gemini';
     } else if (dayAndMonthSelectedDate >= this.cancerInitialDate && dayAndMonthSelectedDate <= this.cancerEndDate) {
-      return 'Câncer';
+      return currentLanguage === 'pt' ? 'Câncer' : 'Cancer';
     } else if (dayAndMonthSelectedDate >= this.leoInitialDate && dayAndMonthSelectedDate <= this.leoEndDate) {
-      return 'Leão';
+      return currentLanguage === 'pt' ? 'Leão' : 'Leo';
     } else if (dayAndMonthSelectedDate >= this.virgoInitialDate && dayAndMonthSelectedDate <= this.virgoEndDate) {
-      return 'Virgem';
+      return currentLanguage === 'pt' ? 'Virgem' : 'Virgo';
     } else if (dayAndMonthSelectedDate >= this.libraInitialDate && dayAndMonthSelectedDate <= this.libraEndDate) {
       return 'Libra';
     } else if (dayAndMonthSelectedDate >= this.scorpiusInitialDate && dayAndMonthSelectedDate <= this.scorpiusEndDate) {
-      return 'Escorpião';
+      return currentLanguage === 'pt' ? 'Escorpião' : 'Scorpius';
     } else if (dayAndMonthSelectedDate >= this.sagittariusInitialDate && dayAndMonthSelectedDate <= this.sagittariusEndDate) {
-      return 'Sagitário';
+      return currentLanguage === 'pt' ? 'Sagitário' : 'Saggitarius';
     } else if (dayAndMonthSelectedDate >= this.capricornusInitialDate && dayAndMonthSelectedDate <= this.capricornusEndDate) {
-      return 'Capricórnio';
+      return currentLanguage === 'pt' ? 'Capricórnio' : 'Capricornus';
     } else if (dayAndMonthSelectedDate >= this.aquariusInitialDate && dayAndMonthSelectedDate <= this.aquariusEndDate) {
-      return 'Aquário';
+      return currentLanguage === 'pt' ? 'Aquário' : 'Aquarius';
     } else if (dayAndMonthSelectedDate >= this.piscesInitialDate && dayAndMonthSelectedDate <= this.piscesEndDate) {
-      return 'Peixes';
+      return currentLanguage === 'pt' ? 'Peixes' : 'Pisces';
     }
   }
 
