@@ -1,3 +1,8 @@
+// Slightly darken a color
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
 main {
   background-color: #183642;
   height: 100%;
@@ -29,4 +34,18 @@ h2 {
 
 .container {
   max-width: unset;
+}
+
+.btn-primary, .btn-primary:active {
+  background-color: #EC4E20 !important;
+  border-color: #EC4E20 !important;
+}
+
+.btn-primary:focus {
+  box-shadow: none !important;
+}
+
+.btn-primary:hover {
+  background-color: shade(#EC4E20, 20%) !important;
+  border-color: shade(#EC4E20, 20%) !important;
 }
