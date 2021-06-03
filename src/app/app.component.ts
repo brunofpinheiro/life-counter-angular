@@ -17,6 +17,8 @@ export class AppComponent {
   public andText: string;
   public zodiacSignText: string;
   public returnText: string;
+  public invalidDateText: string;
+  public tryAgainText: string;
 
   public selectedDateString: string;
   public selectedDate = new Date();
@@ -34,7 +36,9 @@ export class AppComponent {
     this.changeLanguage();
   }
 
-  // tslint:disable:max-line-length
+  /**
+   * Get how many years, months and days have passed since the selected date.
+   */
   public async calculateLifetime(): Promise<void> {
     if (this.selectedDateString !== undefined && this.selectedDateString.length !== 8) {
       this.showInvalidDateAlert = true;
@@ -58,8 +62,12 @@ export class AppComponent {
     }
   }
 
+  /**
+   * Get how many years have passed since the selected date.
+   * @returns
+   */
   private async calculateYears(): Promise<number> {
-    let tempYears;
+    let tempYears: number;
 
     if (this.selectedDate.getFullYear() > this.currentDate.getFullYear()) {
       console.log('ano superior ao atual');
@@ -82,6 +90,10 @@ export class AppComponent {
     }
   }
 
+  /**
+   * Get how many months have passed since the last year.
+   * @returns
+   */
   private async calculateMonths(): Promise<number> {
     let tempMonths = 0;
 
@@ -107,6 +119,10 @@ export class AppComponent {
     return tempMonths;
   }
 
+  /**
+   * Get how many days have passed since the beginning of the current month.
+   * @returns
+   */
   private async calculateDays(): Promise<number> {
     let tempDays = 0;
 
@@ -127,14 +143,14 @@ export class AppComponent {
   }
 
   /**
-   * Get the days left until the end of month
+   * Get the days left until the end of month.
    * @param dateInTest
    * @private
    */
   private async getRemainingDays(dateInTest: Date): Promise<number> {
-    let date;
-    let time;
-    let days;
+    let date: Date;
+    let time: Date;
+    let days: number;
 
     date = new Date(dateInTest.getFullYear(), dateInTest.getMonth(), dateInTest.getDate());
     time = new Date(date.getTime());
@@ -179,6 +195,8 @@ export class AppComponent {
       this.andText = 'e';
       this.zodiacSignText = 'Signo';
       this.returnText = 'Voltar';
+      this.invalidDateText = 'Data inválida.';
+      this.tryAgainText = 'Tente novamente.';
     } else {
       this.dateOfBirthText = 'Date of birth';
       this.calculateText = 'Calculate';
@@ -188,6 +206,8 @@ export class AppComponent {
       this.andText = 'and';
       this.zodiacSignText = 'Zodiac sign';
       this.returnText = 'Return';
+      this.invalidDateText = 'Invalid date.';
+      this.tryAgainText = 'Try again.';
     }
 
     this.getZodiacSign();
